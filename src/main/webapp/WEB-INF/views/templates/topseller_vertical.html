@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<!--new-arrivals-->
+	<div th:fragment="list(products)">
+		<div id="owl-demo" class="owl-carousel owl-demo">
+			<div class="item">
+				<div class="recent-grids"
+					th:each="index: ${#numbers.sequence(0, products.size()-1, 1)}">
+					<div class="recent-left">
+						<a th:href="@{${products.get(index).url}}"><img class="img-responsive "
+							th:src="@{${products.get(index).image}}" alt="" /></a>
+					</div>
+					<div class="recent-right">
+						<h6 class="best2">
+							<a th:href="@{${products.get(index).url}}" th:text="${products.get(index).name}">Lorem ipsum dolor </a>
+						</h6>
+						<div class="block">
+							<div class="starbox small ghosting"></div>
+						</div>
+						<span th:if="${products.get(index).cost.dollar} gt 0" class=" price-in1" th:text="${products.get(index).cost}"> $ 29.00</span>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="item">
+				<div class="recent-grids"
+					th:each="product: ${products}">
+					<div class="recent-left">
+						<a th:href="@{${product.url}}"><img class="img-responsive "
+							th:src="@{${product.image}}" alt="" /></a>
+					</div>
+					<div class="recent-right">
+						<h6 class="best2">
+							<a th:href="@{${product.url}}" th:text="${product.name}">Lorem ipsum dolor </a>
+						</h6>
+						<div class="block">
+							<div class="starbox small ghosting"></div>
+						</div>
+						<span th:if="${product.cost.dollar} gt 0" class=" price-in1" th:text="${product.cost}"> $ 29.00</span>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<!-- <img class="img-responsive " src="images/woo2.jpg" alt="" /> -->
+	</div>
+	<!--new-arrivals-->
+</body>
+</html>

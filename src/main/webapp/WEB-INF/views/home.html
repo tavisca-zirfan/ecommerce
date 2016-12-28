@@ -1,0 +1,32 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:substituteby="templates/headTag :: headTag">
+<title>New Shop a E-Commerce Online Shopping Category Flat
+	Bootstrap Responsive Website Template | Home :: w3layouts</title>
+</head>
+<body>
+	<script type="text/javascript" src="js/home.js"></script>
+	<div th:replace="templates/bodyHeader :: navigation(${menu})"></div>
+	<div th:replace="templates/banner :: banner"></div>
+	<!--content-->
+	<div class="content">
+		<div th:replace="templates/sub_cat_const :: categories(${menu})"></div>
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default" th:each="topprod,iter:${topproducts}">
+				<div class="panel-heading">
+					<h4 class="panel-title accordian-title">
+						<a data-toggle="collapse" data-parent="#accordion"
+							th:href="'#collapse'+${iter.index}" th:text="${topprod.key}"></a>
+					</h4>
+				</div>
+				<div th:id="'collapse'+${iter.index}" class="panel-collapse collapse" th:classappend="${iter.index eq 0}?in:out">
+					<div th:replace="templates/topseller_horizontal :: list(${topprod.value},'')"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div th:replace="templates/footer :: footer"></div>
+	</div>
+</body>
+</html>

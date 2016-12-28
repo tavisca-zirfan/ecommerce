@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="latest-w3" th:fragment="categories(menu)">
+		<div class="container">
+			<h3 class="tittle1">Categories</h3>
+			<div class="latest-grids" th:each="index : ${ #numbers.sequence(0, menu.menuItems.size()-1, 1)}">
+				<div class="col-md-4 latest-grid">
+					<div class="latest-top">
+						<img th:src="'images/category/'+${menu.menuItems.get(index).category.image}+'.jpg'" class="img-responsive" alt="" />
+						<div class="latest-text">
+							<h4 th:text="${menu.menuItems.get(index).title}">Men</h4>
+						</div>
+						<div class="latest-text2 hvr-sweep-to-top">
+							<h4>-50%</h4>
+						</div>
+					</div>
+				</div>
+				<div th:if="${((index+1) % 3) ==0}" class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:substituteby="templates/headTag :: headTag">
+<title>New Shop a E-Commerce Online Shopping Category Flat
+	Bootstrap Responsive Website Template | Home :: w3layouts</title>
+</head>
+<body>	
+	<div th:replace="templates/bodyHeader :: navigation(${menu})"></div>	
+	<!--content-->
+	<div class="content">
+		<!--single-->
+			<div class="single-wl3">
+				<div class="container">
+					<div class="single-grids row">
+						<div class="col-md-8 single-grid">
+							<div clas="single-top">
+								<div class="single-left">
+									<div class="flexslider">
+										<ul class="slides">
+											<li th:each="image:${product.images}" th:attr="data-thumb=${image}">
+												<div class="thumb-image"> <img th:src="${image}" data-imagezoom="true" class="img-responsive" /> </div>
+											</li>											
+										 </ul>
+									</div>
+								</div>
+								<div class="single-right simpleCart_shelfItem">
+									<h4 th:text="${product.name}">Product Name</h4>
+									<div class="block">
+										<div class="starbox small ghosting"> </div>
+									</div>
+									<p th:if="${product.cost.dollar} gt 0" class="price item_price" th:text="'$'+${product.cost}"></p>
+									<p th:if="${product.cost.dollar} eq 0" class="price item_price" th:text="'Contact us for best price'"></p>
+									<div class="description">
+										<p><span>Quick Overview : </span><span th:text="${product.description}"></span> </p>
+									</div>
+									<div class="color-quality">
+										<h6>Quanity :</h6>
+											<div class="quantity"> 
+												<div class="quantity-select">                           
+													<div class="entry value-minus1">&nbsp;</div>
+													<div class="entry value1"><span>1</span></div>
+													<div class="entry value-plus1 active">&nbsp;</div>
+												</div>
+											</div>
+												
+									</div>
+									<div class="women">
+										<span class="size" th:text="${product.brand.name}"></span>
+										<a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
+									</div>
+									<div class="social-icon">
+										<a href="#"><i class="icon"></i></a>
+										<a href="#"><i class="icon1"></i></a>
+										<a href="#"><i class="icon2"></i></a>
+										<a href="#"><i class="icon3"></i></a>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<div class="col-md-4 single-grid1" th:if="${recent.size()>0}">
+							<h3>Recent Products</h3>
+							<div th:replace="templates/topseller_vertical :: list(${recent})"></div>							
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<!--Product Description-->
+						<div class="product-w3agile">
+							<h3 class="tittle1">Product Description</h3>
+							<div class="product-grids">
+								<div class="col-md-4 product-grid single-grid1">
+									<h3>Top Products in Category</h3>
+									<div th:replace="templates/topseller_vertical :: list(${topproducts})"></div>
+								</div>
+								<div class="col-md-8 product-grid1">
+									<div class="tab-wl3">
+										<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+											<ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
+												<li role="presentation" class="active"><a href="#description" id="description-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Dimensions</a></li>
+												<li role="presentation"><a href="#information" role="tab" id="information-tab" data-toggle="tab" aria-controls="reviews">Information</a></li>
+												<li role="presentation"><a href="#collection" role="tab" id="collection-tab" data-toggle="tab" aria-controls="reviews">Collection</a></li>
+											</ul>
+											<div id="myTabContent" class="tab-content">
+												<div role="tabpanel" class="tab-pane fade in active" id="description" aria-labelledby="description-tab">
+													<div class="descr">
+														<h4 th:text="${product.name}"> </h4>
+														<div class="">													
+															<ul>
+																<li th:if="${product.dimension.width gt 0}"> <span>Width : </span><span th:text="${#numbers.formatDecimal(product.dimension.width, 0, 'DEFAULT', 2, 'DEFAULT')}"></span></li>
+																<li th:if="${product.dimension.height gt 0}"> <span>Height : </span><span th:text="${#numbers.formatDecimal(product.dimension.height, 0, 'DEFAULT', 2, 'DEFAULT')}"></span></li>
+																<li th:if="${product.dimension.length gt 0}"> <span>Length : </span><span th:text="${#numbers.formatDecimal(product.dimension.length, 0, 'DEFAULT', 2, 'DEFAULT')}"></span></li>
+																<li th:if="${product.dimension.weight gt 0}"> <span>Weight : </span><span th:text="${#numbers.formatDecimal(product.dimension.weight, 0, 'DEFAULT', 2, 'DEFAULT')}"></span></li>
+															</ul>
+														</div>	
+													</div>
+												</div>
+												<div role="tabpanel" class="tab-pane fade" id="information" aria-labelledby="information-tab">
+													<div class="descr row">
+														<div class="col-md-12">
+															<h4>Information </h4>	
+																											
+																<ul>
+																	<li> <span>Made in </span><span th:text="${product.countryOfOrigin}"></span></li>
+																	<li> <span>Catalog Year</span><span th:text="${product.catalogYear}"></span></li>
+																</ul>
+															
+														</div>
+														<div class="row">
+														<div class="col-md-12">
+															<div class="col-md-3 descr">
+																<h4>Colors Available </h4>	
+																<div class="color-availability">															
+																	<ul>
+																		<li th:each="color:${product.colors}"><a href="#" th:class="${#strings.toLowerCase(color.name)}"><span></span><span th:text="${color.name}" th:remove="tag"></span></a></li>																
+																	</ul>
+																</div>
+															</div>
+															<div class="col-md-3 descr">
+																<h4>Materials Available </h4>														
+																<div class="">															
+																	<ul>
+																		<li th:each="material:${product.materials}" th:text="${material.name}"></li>																	
+																	</ul>
+																</div>
+															</div>
+															<div class="col-md-3 descr">
+																<h4>Styles Available </h4>	
+																<div class="">															
+																	<ul>
+																		<li th:each="style:${product.styles}" th:text="${style.name}"></li>																	
+																	</ul>
+																</div>
+															</div>
+														</div>
+														</div>
+													</div>
+												</div>
+												<div role="tabpanel" class="tab-pane fade" id="collection" aria-labelledby="collection-tab">
+													<div class="descr row">
+														<div class="col-md-12" th:if="${collection}">
+															<div th:replace="templates/product_collection :: list(${collection},'Related Products')"></div>
+														</div>
+													</div>
+												</div>												
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+					<!--Product Description-->
+				</div>
+			</div>
+			<!--single-->
+		<div th:replace="templates/footer :: footer"></div>
+		<script th:src="@{/js/jquery.flexslider.js}"></script>		
+		<script th:src="@{/js/imagezoom.js}"></script>
+		<script th:src="@{/js/owl.carousel.js}"></script>
+		<script th:src="@{/js/product.js}" type="text/javascript"></script>
+	</div>
+</body>
+</html>

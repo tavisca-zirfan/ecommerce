@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="product-tab1 prod1 bs-callout bs-callout-info" th:fragment="thumbnail(product)">
+		<div class="col-md-4 product-tab1-grid">
+			<div class="grid-arr">
+				<div class="grid-arrival">
+					<figure>
+						<a href="#" class="new-gri" data-toggle="modal"
+							th:attr="data-target='#modal'+${product.id }">
+							<div class="grid-img">
+								<img th:src="${product.image}" class="img-responsive" alt="" />
+							</div>
+							<div class="grid-img">
+								<img th:src="${product.image}" class="img-responsive" alt="" />
+							</div>
+						</a>
+					</figure>
+				</div>
+				<div class="ribben1"><p>$99.99/mo.*</p></div>
+			</div>
+		</div>
+		<div class="col-md-8 product-tab1-grid1 simpleCart_shelfItem">
+			<div class="block">
+				<div class="starbox small ghosting"></div>
+			</div>
+			<div class="women">
+				<h6>
+					<a th:href="${product.url}" th:text="${product.name}"></a>
+				</h6>
+				<span class="size" th:text="${product.brand.name}"></span>
+				<p th:text="${product.description}"></p>
+				<p th:if="${product.cost.dollar} gt 0">
+
+					<em class="item_price" th:text="${product.cost}">$70.00</em>
+				</p>
+				<a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add
+					To Cart</a>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+</body>
+</html>
